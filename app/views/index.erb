@@ -1,13 +1,11 @@
-<h1>Welcome to Our Page!</h1>
-
-<!-- 
-An index page listing all the posts
-
-form is stubbed out to 1
--->
-<form action="/albums/1" enctype="multipart/form-data" method="POST">
-  <input type="file" name="image">
-  <input type="submit">
-</form>
-
+<div class='container'>
+  <% if logged_in? %>
+    <h1>Welcome <%= @user.username.capitalize %></h1>
+    <h4>Albums: </h4>
+      <ul>
+        <% @user.albums.each do |album| %>
+          <li><a href='/albums/<%= album.id %>'><%= album.title %></li>
+        <% end %>
+      </ul>
+  <% end %>
 </div>

@@ -1,6 +1,10 @@
 get '/' do
-  # Look in app/views/index.erb
-  erb :index
+  if logged_in?
+    @user = current_user
+    erb :index
+  else
+    redirect '/login'
+  end
 end
 
 post '/whatever' do
@@ -9,7 +13,7 @@ post '/whatever' do
 end
 
 post '/albums/:id' do
-  # photo is stubbed out - will be more like 
+  # photo is stubbed out - will be more like
   # photo = current_user.albums.find(params[:id]).photos.new()
   photo = Photo.new()
   photo.file = params[:image]
