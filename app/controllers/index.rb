@@ -14,4 +14,13 @@ post '/albums/:id' do
   photo = Photo.new()
   photo.file = params[:image]
   photo.save
+  redirect "/photo/#{photo.id}"
+end
+
+get '/photo/:id' do
+  photo = Photo.find(params[:id])
+  @path = photo.file
+
+  erb :photo_show
+
 end
