@@ -33,5 +33,12 @@ APP_NAME = APP_ROOT.basename.to_s
 Dir[APP_ROOT.join('app', 'controllers', '*.rb')].each { |file| require file }
 Dir[APP_ROOT.join('app', 'helpers', '*.rb')].each { |file| require file }
 
+# Set up carrierwave
+Dir[APP_ROOT.join('uploader', '*.rb')].each { |file| require file }
+CarrierWave.configure do |config|
+  config.root = APP_ROOT + 'public/'
+end
+
 # Set up the database and models
 require APP_ROOT.join('config', 'database')
+
