@@ -1,7 +1,8 @@
 class User < ActiveRecord::Base
-  # Remember to create a migration!
- 
   include BCrypt
+
+  has_many :albums
+  has_many :photos, through: :albums
 
   def password
     @password ||= Password.new(password_hash)
@@ -11,6 +12,5 @@ class User < ActiveRecord::Base
     @password = Password.create(new_password)
     self.password_hash = @password
   end
-
 
 end
