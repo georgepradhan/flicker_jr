@@ -1,24 +1,11 @@
 get '/' do
-  if logged_in?
-    @user = current_user
-    erb :index
-  else
-    redirect '/login'
-  end
+  redirect '/albums' if logged_in?
+  redirect '/login'
 end
 
 post '/whatever' do
   Photo.create(filename: params[:filename])
   redirect '/'
-end
-
-post '/albums/:id' do
-  # photo is stubbed out - will be more like
-  # photo = current_user.albums.find(params[:id]).photos.new()
-  photo = Photo.new()
-  photo.file = params[:image]
-  photo.save
-  redirect "/photo/#{photo.id}"
 end
 
 get '/photo/:id' do
