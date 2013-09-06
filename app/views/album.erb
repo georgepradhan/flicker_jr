@@ -5,4 +5,10 @@
     <p>Add Photo:</p>
     <%= erb :photo_upload %>
   </div>
+
+  <div>
+    <% @photos.each do |photo| %>
+      <img src="<%= photo.file %>">
+    <% end %>
+  </div>
 </div>
